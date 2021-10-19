@@ -43,7 +43,7 @@ public class ReservaDto implements Serializable {
     @JsonIgnoreProperties({"messages", "reservations"})
     private ClienteDto client;
     
-    private String score = "None";
+    private String score;
 
     public int getIdReservation() {
         return idReservation;
