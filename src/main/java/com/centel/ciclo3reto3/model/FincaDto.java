@@ -28,9 +28,9 @@ public class FincaDto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="id_Farm")
     private Integer id;
-    private String address;
-    private int extension;
     private String name;
+    private String address;
+    private int extension;    
     private String description;
     
     
