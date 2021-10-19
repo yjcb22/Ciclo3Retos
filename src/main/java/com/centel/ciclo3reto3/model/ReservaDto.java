@@ -30,7 +30,7 @@ public class ReservaDto implements Serializable {
     private int idReservation;
     private Date startDate;
     private Date devolutionDate;
-    //private String status;
+    private String status;
     //private String creationDate;
     
     @ManyToOne
@@ -83,11 +83,22 @@ public class ReservaDto implements Serializable {
         this.client = client;
     }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
-        return "ReservationDto{" + "id=" + idReservation + ", startDate=" + startDate + ", devolutionDate=" + devolutionDate + ", farm=" + farm + ", client=" + client + '}';
+        return "ReservaDto{" + "idReservation=" + idReservation + ", startDate=" + startDate + ", devolutionDate=" + devolutionDate + ", status=" + status + ", farm=" + farm + ", client=" + client + '}';
     }
     
+    
+
+   
     
     
     

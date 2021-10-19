@@ -32,6 +32,7 @@ public class ControladorReserva {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public ReservaDto apiGuardarReserva(@RequestBody ReservaDto reserva){
+        reserva.setStatus("created");
         return reservaServicio.guardarReserva(reserva);
     }
     
