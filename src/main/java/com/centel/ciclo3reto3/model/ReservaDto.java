@@ -42,6 +42,8 @@ public class ReservaDto implements Serializable {
     @JoinColumn(name="id_Client", referencedColumnName = "id_Client")
     @JsonIgnoreProperties({"messages", "reservations"})
     private ClienteDto client;
+    
+    private String score = "None";
 
     public int getIdReservation() {
         return idReservation;
@@ -91,15 +93,16 @@ public class ReservaDto implements Serializable {
         this.status = status;
     }
 
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
-        return "ReservaDto{" + "idReservation=" + idReservation + ", startDate=" + startDate + ", devolutionDate=" + devolutionDate + ", status=" + status + ", farm=" + farm + ", client=" + client + '}';
-    }
-    
-    
-
-   
-    
-    
-    
+        return "ReservaDto{" + "idReservation=" + idReservation + ", startDate=" + startDate + ", devolutionDate=" + devolutionDate + ", status=" + status + ", farm=" + farm + ", client=" + client + ", score=" + score + '}';
+    }    
 }
