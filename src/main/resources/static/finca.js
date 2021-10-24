@@ -1,9 +1,9 @@
 //Contantes
-const URL_FARM_GET_ALL = "http://127.0.0.1:8080/api/Farm/all";
-const URL_FARM_GET_ID = "http://127.0.0.1:8080/api/Farm";
-const URL_FARM_CREATE = "http://127.0.0.1:8080/api/Farm/save";
-const URL_FARM_UPDATE = "http://127.0.0.1:8080/api/Farm/update";
-const URL_FARM_DELETE = "http://127.0.0.1:8080/api/Farm";
+const URL_FARM_GET_ALL = "http://127.0.0.1:2109/api/Farm/all";
+const URL_FARM_GET_ID = "http://127.0.0.1:2109/api/Farm";
+const URL_FARM_CREATE = "http://127.0.0.1:2109/api/Farm/save";
+const URL_FARM_UPDATE = "http://127.0.0.1:2109/api/Farm/update";
+const URL_FARM_DELETE = "http://127.0.0.1:2109/api/Farm";
 //Variables
 let tablaFinca = $("#tablaFinca");
 let tablaFincaEditar = $("#tablaFincaEditar");
