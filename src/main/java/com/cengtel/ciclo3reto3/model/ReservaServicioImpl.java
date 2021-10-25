@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ReservaServicioImpl implements ReservaServicio {
+
     @Autowired
     private ReservaDao reservaDao;
 
@@ -30,16 +31,33 @@ public class ReservaServicioImpl implements ReservaServicio {
 
     @Override
     public ReservaDto actualizarReserva(ReservaDto reserva) {
-        return reservaDao.save(reserva);
+        ReservaDto reservaTmp = reservaDao.findById(reserva.getIdReservation()).orElse(null);
+        //Verificar si el cliente ya existe
+        if (reservaTmp != null) {
+            //Agregar los nuevos valores
+            if(reserva.getStartDate() != null){
+                reservaTmp.setStartDate(reserva.getStartDate());
+            }
+            if(reserva.getDevolutionDate() != null){
+                reservaTmp.setDevolutionDate(reserva.getDevolutionDate());
+            }
+            if(reserva.getClient() != null){
+                reservaTmp.setClient(reserva.getClient());
+            }
+            if(reserva.getFarm() != null){
+                reservaTmp.setFarm(reserva.getFarm());
+            }
+        }
+        return reservaDao.save(reservaTmp);
     }
 
     @Override
     public boolean borrarReserva(ReservaDto reservation) {
-         ReservaDto reserva = reservaDao.findById(reservation.getIdReservation()).orElse(null);
+        ReservaDto reserva = reservaDao.findById(reservation.getIdReservation()).orElse(null);
         if (reserva != null) {
             reservaDao.delete(reservation);
             return true;
-        } else{
+        } else {
             return false;
         }
     }
@@ -48,5 +66,5 @@ public class ReservaServicioImpl implements ReservaServicio {
     public ReservaDto encontrarReservaPorId(ReservaDto reserva) {
         return reservaDao.findById(reserva.getIdReservation()).orElse(null);
     }
-    
+
 }

@@ -31,7 +31,25 @@ public class ClienteServicioImpl implements ClienteServicio{
 
     @Override
     public ClienteDto actualizarCliente(ClienteDto cliente) {
-        return clienteDao.save(cliente);
+        ClienteDto clienteTmp = clienteDao.findById(cliente.getIdClient()).orElse(null);
+        
+        //Verificar si el cliente ya existe
+        if(clienteTmp != null){
+            //Agregar los nuevos valores
+            if(cliente.getName() != null){
+                clienteTmp.setName(cliente.getName());
+            }
+            if(cliente.getEmail() !=null){
+                clienteTmp.setEmail(cliente.getEmail());
+            }
+            if(cliente.getPassword() !=null){
+                clienteTmp.setPassword(cliente.getPassword());
+            }
+            if(cliente.getAge() != 0){
+                clienteTmp.setAge(cliente.getAge());
+            }
+        }
+        return clienteDao.save(clienteTmp);
     }
 
     @Override

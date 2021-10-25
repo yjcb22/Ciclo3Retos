@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MensajeServicioImpl implements MensajeServicio {
+
     @Autowired
     private MensajeDao mensajeDao;
 
@@ -30,23 +31,37 @@ public class MensajeServicioImpl implements MensajeServicio {
 
     @Override
     public MensajeDto actualizarMensaje(MensajeDto mensaje) {
-        return mensajeDao.save(mensaje);
+        MensajeDto mensajeTmp = mensajeDao.findById(mensaje.getIdMessage()).orElse(null);
+        //Verificar si el cliente ya existe
+        if (mensajeTmp != null) {
+            //Agregar los nuevos valores
+            if(mensaje.getMessageText() != null){                
+                mensajeTmp.setMessageText(mensaje.getMessageText());
+            }
+            if(mensaje.getClient() != null){
+                mensajeTmp.setClient(mensaje.getClient());
+            }
+            if(mensaje.getFarm() != null){
+                mensajeTmp.setFarm(mensaje.getFarm());
+            }
+        }
+        return mensajeDao.save(mensajeTmp);
     }
 
     @Override
     public boolean borrarMensaje(MensajeDto message) {
-       MensajeDto mensaje = mensajeDao.findById(message.getIdMessage()).orElse(null);
+        MensajeDto mensaje = mensajeDao.findById(message.getIdMessage()).orElse(null);
         if (mensaje != null) {
             mensajeDao.delete(mensaje);
             return true;
-        } else{
+        } else {
             return false;
-        }        
+        }
     }
 
     @Override
     public MensajeDto encontrarMensajePorId(MensajeDto mensaje) {
         return mensajeDao.findById(mensaje.getIdMessage()).orElse(null);
     }
-    
+
 }

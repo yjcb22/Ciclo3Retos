@@ -30,7 +30,29 @@ public class FincaServicioImpl implements FincaServicio {
 
     @Override
     public FincaDto actualizarFinca(FincaDto finca) {
-        return fincaDao.save(finca);
+        FincaDto fincaTmp = fincaDao.findById(finca.getId()).orElse(null);
+        
+        //Verificar si la categoria ya existe
+        if(fincaTmp != null){
+            //Agregar los nuevos valores
+            System.out.println(finca.getExtension());
+            if(finca.getName() != null){
+                fincaTmp.setName(finca.getName());
+            }
+            if(finca.getAddress() != null){
+                fincaTmp.setAddress(finca.getAddress());
+            }
+            if(finca.getExtension() != 0){
+                fincaTmp.setExtension(finca.getExtension());
+            }
+            if(finca.getDescription() != null){
+                fincaTmp.setDescription(finca.getDescription());
+            }            
+            if(finca.getCategory() != null){
+                fincaTmp.setCategory(finca.getCategory());
+            }
+        }
+        return fincaDao.save(fincaTmp);
     }
 
     @Override

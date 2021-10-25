@@ -29,8 +29,20 @@ public class CategoriaServicioImpl implements CategoriaServicio{
     }
 
     @Override
-    public CategoriaDto actualizarCategoria(CategoriaDto category) {
-        return categoryDao.save(category);
+    public CategoriaDto actualizarCategoria(CategoriaDto category) {        
+        CategoriaDto categoryTmp = categoryDao.findById(category.getId()).orElse(null);
+        
+        //Verificar si la categoria ya existe
+        if(categoryTmp != null){
+            //Agregar los nuevos valores
+            if(category.getName() != null){
+                categoryTmp.setName(category.getName());
+            }
+            if (category.getDescription() != null) {
+                categoryTmp.setDescription(category.getDescription());
+            }
+        } 
+        return categoryDao.save(categoryTmp);
     }
 
     @Override
